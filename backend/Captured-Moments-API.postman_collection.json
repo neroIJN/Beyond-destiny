@@ -1,0 +1,588 @@
+{
+  "info": {
+    "name": "Captured Moments API",
+    "description": "Complete API collection for Captured Moments photography backend.\n\n## How to use:\n1. Import this file into Postman\n2. Set the `base_url` variable to `http://localhost:8080`\n3. Run **Admin Login** first — the token saves automatically\n4. All other admin requests will use it automatically",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "description": "Change to your production URL when deploying"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "description": "JWT token — auto-filled after Admin Login"
+    },
+    {
+      "key": "album_id",
+      "value": "",
+      "description": "Album ID — copy from Create Album response"
+    },
+    {
+      "key": "photo_id",
+      "value": "",
+      "description": "Photo ID — copy from Add Photo response"
+    }
+  ],
+  "item": [
+    {
+      "name": "🌍 Public",
+      "description": "No authentication required. These are the endpoints the frontend uses.",
+      "item": [
+        {
+          "name": "Get All Albums",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/albums",
+              "host": ["{{base_url}}"],
+              "path": ["api", "albums"]
+            },
+            "description": "Returns all published albums for the Portfolio page."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Single Album (by slug)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/albums/golden-hour-in-galle",
+              "host": ["{{base_url}}"],
+              "path": ["api", "albums", "golden-hour-in-galle"]
+            },
+            "description": "Returns one album + all its photos. Change the slug in the URL to match your album."
+          },
+          "response": []
+        },
+        {
+          "name": "Submit Contact Form",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Kamal Perera\",\n  \"email\": \"kamal@example.com\",\n  \"phone\": \"+94 77 123 4567\",\n  \"wedding_date\": \"2025-12-15\",\n  \"venue\": \"Galle Fort, Sri Lanka\",\n  \"message\": \"We are planning a small intimate wedding and would love to discuss coverage options.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/contact",
+              "host": ["{{base_url}}"],
+              "path": ["api", "contact"]
+            },
+            "description": "Saves to the database and sends email notification (if email is configured in .env).\n\nRequired fields: name, email, message\nOptional fields: phone, wedding_date, venue"
+          },
+          "response": []
+        },
+        {
+          "name": "Submit Quote Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"names\": \"Kamal & Dilini\",\n  \"email\": \"kamal@example.com\",\n  \"phone\": \"+94 77 123 4567\",\n  \"event_type\": \"Weddings\",\n  \"event_date\": \"2025-12-15\",\n  \"event_venue\": \"Galle Fort Hotel\",\n  \"budget\": \"$2k - $4k\",\n  \"hear_about_us\": \"Instagram\",\n  \"message\": \"We want full day coverage with two photographers if possible.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/quote-request",
+              "host": ["{{base_url}}"],
+              "path": ["api", "quote-request"]
+            },
+            "description": "Saves to the database and sends email notification.\n\nRequired fields: names, email, event_type, message\nOptional fields: phone, event_date, event_venue, budget, hear_about_us\n\nevent_type values: Weddings | Engagements | Pre-shoots"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🔐 Admin — Auth",
+      "description": "Login to get your JWT token. Run this first.",
+      "item": [
+        {
+          "name": "Admin Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Auto-save token to collection variable after login",
+                  "const res = pm.response.json();",
+                  "if (res.token) {",
+                  "    pm.collectionVariables.set('token', res.token);",
+                  "    console.log('✅ Token saved! You can now use all admin endpoints.');",
+                  "} else {",
+                  "    console.log('❌ Login failed:', res.error);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"your-admin@email.com\",\n  \"password\": \"your-password\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "login"]
+            },
+            "description": "⭐ RUN THIS FIRST.\n\nReplace the email and password with the credentials you created using `go run ./cmd/seed/main.go`.\n\nThe JWT token is automatically saved to the `token` collection variable. All other admin requests use it automatically — you don't need to copy-paste it."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "📁 Admin — Albums",
+      "description": "Manage albums (create, update, publish, delete). All require the JWT token from Admin Login.",
+      "item": [
+        {
+          "name": "List All Albums (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/albums",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "albums"]
+            },
+            "description": "Returns ALL albums including unpublished ones. The public endpoint only shows published albums."
+          },
+          "response": []
+        },
+        {
+          "name": "Create Album",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Auto-save the album ID for follow-up requests",
+                  "const res = pm.response.json();",
+                  "if (res.id) {",
+                  "    pm.collectionVariables.set('album_id', res.id);",
+                  "    console.log('✅ album_id saved:', res.id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Golden Hour in Galle\",\n  \"slug\": \"golden-hour-in-galle\",\n  \"category\": \"Weddings\",\n  \"cover_image_url\": \"https://your-b2-url.com/photos/cover.jpg\",\n  \"display_order\": 1,\n  \"is_published\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/albums",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "albums"]
+            },
+            "description": "Creates a new album.\n\nRequired: title, slug, category, cover_image_url\nOptional: display_order (default 0), is_published (default false)\n\n⚠️ slug must be unique and URL-safe — use hyphens, no spaces.\nExamples: golden-hour-in-galle, beach-romance-2025\n\ncategory values: Weddings | Engagements | Editorial | Pre-Shoots\n\nTip: Set is_published: false while adding photos, then publish when ready."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Album",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Golden Hour in Galle — Updated\",\n  \"is_published\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/albums/{{album_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "albums", "{{album_id}}"]
+            },
+            "description": "Updates an album. You only need to send the fields you want to change — everything else stays the same.\n\nCommon use: flip is_published to true to make it live on the site.\n\nThe album_id variable is auto-set when you run Create Album."
+          },
+          "response": []
+        },
+        {
+          "name": "Publish Album (shortcut)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"is_published\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/albums/{{album_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "albums", "{{album_id}}"]
+            },
+            "description": "Publishes the album so it appears on the public portfolio page. Change is_published to false to unpublish."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Album",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/albums/{{album_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "albums", "{{album_id}}"]
+            },
+            "description": "⚠️ Permanently deletes the album AND all its photos (from database + Backblaze B2 storage).\n\nThis cannot be undone."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🖼️ Admin — Photos",
+      "description": "Add, remove, and reorder photos within an album.",
+      "item": [
+        {
+          "name": "Add Photo to Album",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const res = pm.response.json();",
+                  "if (res.id) {",
+                  "    pm.collectionVariables.set('photo_id', res.id);",
+                  "    console.log('✅ photo_id saved:', res.id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"https://your-b2-url.com/photos/photo1.jpg\",\n  \"alt_text\": \"Bride and groom at sunset\",\n  \"display_order\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/albums/{{album_id}}/photos",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "albums", "{{album_id}}", "photos"]
+            },
+            "description": "Adds a photo to an album.\n\nRequired: url (the Backblaze B2 public URL from the Upload Image endpoint)\nOptional: alt_text (good for SEO), display_order\n\nWorkflow:\n1. Upload Image → get URL\n2. Add Photo to Album → pass that URL here"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Photo from Album",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/albums/{{album_id}}/photos/{{photo_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "albums", "{{album_id}}", "photos", "{{photo_id}}"]
+            },
+            "description": "Removes a photo from the album and deletes it from Backblaze B2 storage."
+          },
+          "response": []
+        },
+        {
+          "name": "Reorder Photos",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"photos\": [\n    { \"id\": \"photo-uuid-1\", \"display_order\": 1 },\n    { \"id\": \"photo-uuid-2\", \"display_order\": 2 },\n    { \"id\": \"photo-uuid-3\", \"display_order\": 3 }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/albums/{{album_id}}/photos/reorder",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "albums", "{{album_id}}", "photos", "reorder"]
+            },
+            "description": "Changes the display order of photos in the gallery.\n\nSend the full list of photo IDs with their new positions. Replace the placeholder UUIDs with real photo IDs from your album."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "📋 Admin — Quotes & Contacts",
+      "description": "View and manage quote requests and contact form submissions. All require the JWT token from Admin Login.",
+      "item": [
+        {
+          "name": "List Quote Requests",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/quote-requests",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "quote-requests"]
+            },
+            "description": "Returns all quote requests ordered by newest first. Each item includes is_read flag to track which ones you've reviewed."
+          },
+          "response": []
+        },
+        {
+          "name": "Mark Quote as Read",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"is_read\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/quote-requests/:id/read",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "quote-requests", ":id", "read"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "paste-quote-uuid-here"
+                }
+              ]
+            },
+            "description": "Toggles the is_read flag on a quote request. Set is_read to false to mark as unread again.\n\nReplace :id with a real UUID from the List Quote Requests response."
+          },
+          "response": []
+        },
+        {
+          "name": "List Contact Submissions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/contact-submissions",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "contact-submissions"]
+            },
+            "description": "Returns all general contact form submissions ordered by newest first."
+          },
+          "response": []
+        },
+        {
+          "name": "Mark Contact as Read",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"is_read\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/contact-submissions/:id/read",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "contact-submissions", ":id", "read"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "paste-contact-uuid-here"
+                }
+              ]
+            },
+            "description": "Toggles the is_read flag on a contact submission. Set is_read to false to mark as unread again.\n\nReplace :id with a real UUID from the List Contact Submissions response."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "⬆️ Admin — Upload Image",
+      "description": "Upload images to Backblaze B2 storage.",
+      "item": [
+        {
+          "name": "Upload Image to B2",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "Select an image file (JPEG, PNG, WebP, or GIF — max 20MB)"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/upload",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "upload"]
+            },
+            "description": "Uploads an image file to Backblaze B2 and returns the public URL.\n\nHow to use in Postman:\n1. Select Body → form-data\n2. Set key to 'file', change type dropdown from Text to File\n3. Click Select Files and pick your image\n4. Send — you'll get back a URL\n5. Copy that URL and use it in Create Album or Add Photo\n\nAllowed types: image/jpeg, image/png, image/webp, image/gif\nMax size: 20MB\n\nResponse: { \"url\": \"https://...backblaze.com/photos/uuid.jpg\" }"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,276 @@
+/* ════════════════════════════════════
+   Hero — Full-Screen Crossfade Slideshow
+   ════════════════════════════════════ */
+
+.hero-fullpage {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background: #0a0a0a;
+}
+
+/* ── Slide container ── */
+.hero-slide-container {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* Dark overlay */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.3) 0%,
+        rgba(0, 0, 0, 0.15) 40%,
+        rgba(0, 0, 0, 0.2) 70%,
+        rgba(0, 0, 0, 0.5) 100%
+    );
+    pointer-events: none;
+}
+
+/* ── Content Overlay ── */
+.hero-overlay-content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+.hero-heading-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.hero-main-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 7vw, 6rem);
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: 0.25em;
+    line-height: 1.1;
+    margin: 0;
+    text-transform: uppercase;
+    text-shadow: 0 4px 40px rgba(0, 0, 0, 0.4);
+}
+
+.hero-script-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+}
+
+.hero-cta-wrapper {
+    margin-top: 0.5rem;
+}
+
+.hero-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: transparent;
+    color: #ffffff;
+    padding: 0.85rem 2.5rem;
+    border-radius: 0;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.hero-cta-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.65);
+    color: #ffffff;
+}
+
+/* ── Slide counter — right side ── */
+.hero-slide-counter {
+    position: absolute;
+    right: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    font-family: var(--font-body);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.counter-current {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+}
+
+.counter-divider {
+    font-size: 0.9rem;
+    font-weight: 300;
+    margin: 0 0.15rem;
+    opacity: 0.5;
+}
+
+.counter-total {
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
+
+/* ── Next button — right side ── */
+.hero-next-btn {
+    position: absolute;
+    right: 2.6rem;
+    top: calc(50% + 2.5rem);
+    z-index: 3;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.6rem;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.hero-next-btn:hover {
+    color: #ffffff;
+}
+
+/* ── Social links — bottom left ── */
+.hero-social-links {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 3rem;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.hero-social-links a {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.3s ease;
+}
+
+.hero-social-links a:hover {
+    color: #ffffff;
+}
+
+.social-dash {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.3);
+    user-select: none;
+}
+
+/* ── Scroll Indicator — bottom center ── */
+.hero-scroll-indicator {
+    position: absolute;
+    bottom: 2.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scroll-chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ════════════════════════════════════
+   Responsive
+   ════════════════════════════════════ */
+@media (max-width: 768px) {
+    .hero-main-title {
+        letter-spacing: 0.15em;
+    }
+
+    .hero-cta-btn {
+        padding: 0.75rem 2rem;
+        font-size: 0.78rem;
+    }
+
+    .hero-slide-counter {
+        right: 1.5rem;
+    }
+
+    .hero-next-btn {
+        right: 1.2rem;
+    }
+
+    .hero-social-links {
+        left: 1.5rem;
+        bottom: 1.5rem;
+    }
+
+    .hero-scroll-indicator {
+        bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-overlay-content {
+        padding: 0 1.25rem;
+        gap: 1.5rem;
+    }
+
+    .hero-social-links {
+        display: none;
+    }
+
+    .hero-slide-counter {
+        right: 1rem;
+    }
+
+    .hero-next-btn {
+        right: 0.75rem;
+    }
+}

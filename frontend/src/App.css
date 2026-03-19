@@ -1,0 +1,61 @@
+/* App-level styles */
+.app {
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animated background blobs */
+.app::before,
+.app::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.app::before {
+  width: 600px;
+  height: 600px;
+  background: var(--blob-1);
+  top: -200px;
+  right: -200px;
+  animation: blob-float 20s ease-in-out infinite;
+  opacity: 0.3;
+}
+
+.app::after {
+  width: 500px;
+  height: 500px;
+  background: var(--blob-2);
+  bottom: -150px;
+  left: -150px;
+  animation: blob-float 25s ease-in-out infinite reverse;
+  opacity: 0.3;
+}
+
+@keyframes blob-float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(30px, -30px) scale(1.05);
+  }
+  50% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+  75% {
+    transform: translate(-30px, -20px) scale(1.02);
+  }
+}
+
+/* Page content wrapper */
+.page-content {
+  position: relative;
+  z-index: 1;
+}

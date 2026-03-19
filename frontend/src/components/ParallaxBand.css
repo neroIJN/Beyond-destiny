@@ -1,0 +1,77 @@
+/* ═══════════════════════════════
+   Parallax Band — Full-Bleed Image
+   ═══════════════════════════════ */
+
+.parallax-band {
+    position: relative;
+    height: 70vh;
+    min-height: 500px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.parallax-image-container {
+    position: absolute;
+    inset: -15% 0;
+    z-index: 0;
+}
+
+.parallax-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5) saturate(0.9);
+}
+
+/* Film grain overlay */
+.parallax-grain {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+}
+
+.parallax-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.parallax-content blockquote {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    font-weight: 500;
+    color: white;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.parallax-content cite {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-style: normal;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* ═══════════════════════════════
+   Responsive
+   ═══════════════════════════════ */
+@media (max-width: 768px) {
+    .parallax-band {
+        height: 60vh;
+        min-height: 400px;
+    }
+
+    .parallax-content {
+        padding: 1.5rem;
+    }
+}

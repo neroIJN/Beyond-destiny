@@ -1,0 +1,114 @@
+/* ═══════════════════════════════
+   Masonry Grid — Glassmorphic
+   ═══════════════════════════════ */
+
+.masonry-grid {
+    columns: 3;
+    column-gap: 1.25rem;
+}
+
+.masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1.25rem;
+}
+
+.masonry-image-wrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0px;
+    cursor: pointer;
+}
+
+.masonry-image-wrap img {
+    width: 100%;
+    display: block;
+    border-radius: 0px;
+    transition: transform 0.5s ease;
+}
+
+.masonry-image-wrap:hover img {
+    transform: scale(1.04);
+}
+
+.masonry-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, transparent 60%);
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    border-radius: 0px;
+}
+
+.masonry-image-wrap:hover .masonry-overlay {
+    opacity: 1;
+}
+
+.overlay-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    width: 100%;
+}
+
+.masonry-category {
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-primary);
+}
+
+.masonry-title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+}
+
+.masonry-action {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transform: translate(10px, -10px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.masonry-image-wrap:hover .masonry-action {
+    transform: translate(0, 0);
+    opacity: 1;
+}
+
+/* ═══════════════════════════════
+   Responsive
+   ═══════════════════════════════ */
+@media (max-width: 1024px) {
+    .masonry-grid {
+        columns: 2;
+    }
+}
+
+@media (max-width: 480px) {
+    .masonry-grid {
+        columns: 1;
+    }
+
+    .masonry-item {
+        margin-bottom: 1rem;
+    }
+}

@@ -1,0 +1,298 @@
+/* ═══════════════════════════════════════════════
+   Request a Quote Page Styles (Glassmorphic)
+   ═══════════════════════════════════════════════ */
+
+.request-quote-page {
+    background: var(--bg-primary);
+}
+
+.quote-hero {
+    padding: 160px 0 80px;
+    text-align: center;
+    background: var(--bg-primary);
+}
+
+.quote-hero .label-text {
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--accent-gold);
+}
+
+.quote-hero h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--text-primary);
+}
+
+.quote-hero h1 em {
+    color: var(--accent-gold);
+}
+
+.quote-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 0;
+}
+
+.quote-details {
+    background: var(--bg-secondary);
+    padding: 3.5rem;
+    border-radius: 3px 0 0 3px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.quote-details h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 400;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.quote-details h2 em {
+    font-style: italic;
+    color: var(--accent-gold);
+}
+
+.quote-packages {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.package-item {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.package-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.package-item h3 {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.package-item p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    padding-left: 3.5rem; /* Indent to match text after pill */
+}
+
+/* ═══════════════════════════════════════════════
+   Form Styles 
+   ═══════════════════════════════════════════════ */
+
+.quote-form-container {
+    background: var(--bg-card);
+    padding: 3.5rem;
+    border-radius: 0 3px 3px 0;
+    border: 1px solid var(--border);
+    border-left: none;
+}
+
+.quote-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group {
+    position: relative;
+}
+
+/* Inputs, Selects, Textareas */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1.2rem 1rem 0.6rem;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: all var(--transition-fast) var(--ease-smooth);
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    background: #ffffff;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+/* Floating labels */
+.form-group label {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    pointer-events: none;
+    transition: all var(--transition-fast) var(--ease-smooth);
+    background: transparent;
+}
+
+.form-group textarea + label {
+    top: 1rem;
+    transform: none;
+}
+
+/* When input is focused or not empty, float the label */
+.form-group input:not(:placeholder-shown) + label,
+.form-group input:focus + label,
+.form-group textarea:not(:placeholder-shown) + label,
+.form-group textarea:focus + label {
+    top: 0.6rem;
+    transform: translateY(-50%) scale(0.8);
+    transform-origin: left top;
+    color: var(--text-body);
+}
+
+.form-group textarea:not(:placeholder-shown) + label,
+.form-group textarea:focus + label {
+    top: 0.8rem;
+}
+
+/* Select specific styles for floating label workaround */
+.form-group select {
+    appearance: none;
+    cursor: pointer;
+}
+
+.form-group select:focus + .select-label,
+.form-group select:valid + .select-label {
+    top: 0.6rem;
+    transform: translateY(-50%) scale(0.8);
+    transform-origin: left top;
+    color: var(--text-body);
+}
+
+/* Date specific styling */
+.form-group input[type="date"] {
+    color: transparent; /* Hide native placeholder/text initially */
+}
+
+.form-group input[type="date"]:focus,
+.form-group input[type="date"]:valid {
+    color: var(--text-primary);
+}
+
+.form-group input[type="date"]:focus + .date-label,
+.form-group input[type="date"]:valid + .date-label {
+    top: 0.6rem;
+    transform: translateY(-50%) scale(0.8);
+    transform-origin: left top;
+    color: var(--text-body);
+}
+
+/* Tabs Styling */
+.quote-tabs {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 0.5rem;
+}
+
+.quote-tab {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    font-family: var(--font-heading);
+    cursor: pointer;
+    padding: 0.5rem 0.5rem;
+    position: relative;
+    transition: color var(--transition-fast);
+}
+
+.quote-tab:hover {
+    color: var(--text-primary);
+}
+
+.quote-tab.active {
+    color: var(--accent-primary);
+    font-weight: 500;
+}
+
+.quote-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -0.6rem; /* Match offset to reach the border */
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-primary);
+}
+
+/* ═══════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+    .quote-wrapper {
+        display: flex;
+        flex-direction: column; /* Details on top */
+    }
+
+    .quote-details {
+        border-radius: 3px 3px 0 0;
+    }
+
+    .quote-form-container {
+        border-radius: 0 0 3px 3px;
+        border-left: 1px solid var(--border);
+        border-top: none;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .quote-wrapper {
+        padding: 0 1rem;
+    }
+    
+    .quote-details,
+    .quote-form-container {
+        padding: 2.5rem 2rem;
+    }
+    
+    .package-item p {
+        padding-left: 0;
+        margin-top: 0.5rem;
+    }
+}

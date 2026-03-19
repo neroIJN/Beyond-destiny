@@ -1,0 +1,224 @@
+/* ════════════════════════════════════
+   Blog Section — 3D Tilt Enhanced
+   ════════════════════════════════════ */
+
+.blog-section {
+    padding: var(--section-padding) 0;
+    overflow: hidden;
+}
+
+.blog-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.blog-eyebrow {
+    display: inline-flex;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent-primary);
+    background: var(--accent-light);
+    padding: 0.5rem 1.25rem;
+    border-radius: var(--radius-full);
+    margin-bottom: 1.25rem;
+}
+
+.blog-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* 3-Column Card Grid */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    perspective: 1000px;
+}
+
+/* Blog Card */
+.blog-card {
+    overflow: hidden;
+    padding: 0;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+/* Card Image */
+.card-image-link {
+    display: block;
+    overflow: hidden;
+}
+
+.card-image {
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    border-radius: 0px;
+    position: relative;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-smooth);
+}
+
+.blog-card:hover .card-image img {
+    transform: scale(1.08);
+}
+
+/* Shimmer Effect */
+.card-image-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 100%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.8s ease;
+    pointer-events: none;
+}
+
+.blog-card:hover .card-image-shimmer {
+    transform: translateX(100%);
+}
+
+/* Duotone Overlay */
+.card-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(196, 130, 109, 0.4), rgba(139, 90, 43, 0.2));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.blog-card:hover .card-image-overlay {
+    opacity: 1;
+}
+
+/* Card Body */
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.card-category {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--accent-primary);
+    background: var(--accent-light);
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-full);
+    transition: all 0.3s ease;
+}
+
+.blog-card:hover .card-category {
+    background: var(--accent-primary);
+    color: white;
+}
+
+.card-date {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.card-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+}
+
+.card-title a {
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+.card-title a:hover {
+    color: var(--accent-primary);
+}
+
+.card-excerpt {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text-body);
+    line-height: 1.7;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* CTA */
+.blog-cta {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.blog-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--accent-primary);
+    transition: all 0.3s var(--ease-smooth);
+}
+
+.blog-link:hover {
+    gap: 0.75rem;
+}
+
+.blog-link svg {
+    font-size: 1.1rem;
+    transition: transform 0.3s var(--ease-smooth);
+}
+
+.blog-link:hover svg {
+    transform: translateX(4px);
+}
+
+/* ════════════════════════════════════
+   Responsive
+   ════════════════════════════════════ */
+@media (max-width: 1024px) {
+    .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .card-body {
+        padding: 1.25rem;
+    }
+    
+    /* Disable 3D tilt on mobile */
+    .blog-card {
+        transform: none !important;
+    }
+}

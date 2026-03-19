@@ -1,0 +1,98 @@
+/* Site Settings admin page */
+
+.adms-success-banner {
+    background: rgba(76, 175, 128, 0.12);
+    border: 1px solid rgba(76, 175, 128, 0.3);
+    border-radius: 8px;
+    color: var(--adm-success);
+    padding: 10px 16px;
+    font-size: 0.88rem;
+    margin-bottom: 20px;
+}
+
+.adms-form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.adms-group-card {
+    background: var(--adm-surface);
+    border: 1px solid var(--adm-border);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: all var(--transition-medium) var(--ease-smooth);
+}
+
+.adms-group-card:hover {
+    border-color: var(--adm-accent);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.adms-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.adms-label {
+    font-size: 0.82rem;
+    color: var(--adm-muted);
+    font-weight: 500;
+}
+
+.adm-input {
+    background: var(--adm-surface);
+    border: 1px solid var(--adm-border);
+    border-radius: 8px;
+    color: var(--adm-text);
+    padding: 9px 12px;
+    font-size: 0.9rem;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.15s;
+    font-family: inherit;
+}
+
+.adm-input:focus {
+    outline: none;
+    border-color: var(--adm-accent);
+}
+
+.adms-input--changed {
+    border-color: var(--adm-accent);
+    background: rgba(77, 93, 109, 0.02);
+}
+
+.adms-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-top: 8px;
+}
+
+.adms-no-changes {
+    font-size: 0.82rem;
+    color: var(--adm-muted);
+}
+
+.adms-textarea {
+    resize: vertical;
+    min-height: 72px;
+    line-height: 1.5;
+}
+
+/* Image picker fields — wrap the ImageUploader with optional changed indicator */
+.adms-image-field {
+    max-width: 280px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.adms-image-field--changed {
+    outline: 2px solid var(--adm-accent);
+    outline-offset: 4px;
+}

@@ -1,0 +1,183 @@
+/* ═══════════════════════════════
+   Album Page — Modern Cinematic
+   ═══════════════════════════════ */
+
+
+.album-page {
+    background: var(--bg-primary);
+}
+
+/* Hero */
+.album-hero {
+    position: relative;
+    height: 70vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    margin-bottom: 80px;
+}
+
+.album-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.85) 100%);
+}
+
+.album-hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.album-hero .label-text {
+    display: block;
+    margin-bottom: 1.5rem;
+    color: var(--accent-primary);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    font-family: var(--font-label, var(--font-body));
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.album-hero h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    font-style: italic;
+    font-weight: 500;
+    color: #fff;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    margin: 0;
+    line-height: 1.1;
+}
+
+/* Gallery */
+.album-gallery {
+    padding-bottom: 120px;
+}
+
+.album-masonry {
+    columns: 3;
+    column-gap: 1.5rem;
+}
+
+.album-item {
+    break-inside: avoid;
+    margin-bottom: 1.5rem;
+}
+
+/* ── Card ── */
+.album-image-wrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    background: var(--bg-secondary);
+}
+
+.album-image-wrap img {
+    width: 100%;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Hover Effects */
+.album-image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.album-image-wrap:hover img {
+    transform: scale(1.05);
+}
+
+.album-image-wrap:hover::after {
+    opacity: 1;
+}
+
+/* ═══════════════════════════════
+   Lightbox
+   ═══════════════════════════════ */
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.lightbox-img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    cursor: default;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+}
+
+/* ═══════════════════════════════
+   Responsive
+   ═══════════════════════════════ */
+@media (max-width: 1024px) {
+    .album-masonry {
+        columns: 2;
+        column-gap: 1.25rem;
+    }
+
+    .album-item {
+        margin-bottom: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .album-masonry {
+        columns: 1;
+    }
+
+    .album-item {
+        margin-bottom: 1rem;
+    }
+
+    .album-hero {
+        height: 50vh;
+        min-height: 400px;
+    }
+}

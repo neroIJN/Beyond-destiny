@@ -1,0 +1,174 @@
+/* AdminShowcase reuses most styles from AdminHeroSlides */
+
+/* Shared slide/item list styles (duplicated here so we don't create a circular dependency) */
+.hs-slide-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 36px;
+}
+
+.hs-slide-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 18px;
+    background: var(--adm-surface);
+    border: 1px solid var(--adm-border);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-medium) var(--ease-smooth);
+}
+
+.hs-slide-row:hover {
+    border-color: var(--adm-accent);
+    transform: translateX(6px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.hs-slide-row--inactive {
+    opacity: 0.55;
+}
+
+.hs-thumb {
+    width: 96px;
+    height: 60px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--adm-border);
+    flex-shrink: 0;
+}
+
+.hs-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hs-slide-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.hs-alt-text {
+    font-size: 0.88rem;
+    color: var(--adm-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hs-slide-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.hs-order-btn {
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--adm-border);
+    background: transparent;
+    color: var(--adm-muted);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.15s, color 0.15s;
+}
+
+.hs-order-btn:hover:not(:disabled) {
+    border-color: var(--adm-accent);
+    color: var(--adm-accent);
+    background: rgba(77, 93, 109, 0.04);
+}
+
+.hs-order-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.hs-btn-danger {
+    background: var(--adm-danger);
+    color: #ffffff;
+    border: none;
+}
+
+.hs-btn-danger:hover {
+    opacity: 0.9;
+}
+
+.hs-btn-danger-ghost {
+    background: transparent;
+    border: 1px solid var(--adm-border);
+    color: var(--adm-muted);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+}
+
+.hs-btn-danger-ghost:hover {
+    border-color: var(--adm-danger);
+    color: var(--adm-danger);
+    background: rgba(217, 83, 79, 0.04);
+}
+
+.hs-add-section {
+    border-top: 1px solid var(--adm-border);
+    padding-top: 28px;
+}
+
+.hs-add-form {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.hs-add-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.adm-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.adm-form-label {
+    font-size: 0.8rem;
+    color: var(--adm-muted);
+    font-weight: 500;
+}
+
+.adm-input {
+    background: var(--adm-surface);
+    border: 1px solid var(--adm-border);
+    border-radius: 8px;
+    color: var(--adm-text);
+    padding: 9px 12px;
+    font-size: 0.88rem;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.15s;
+}
+
+.adm-input:focus {
+    outline: none;
+    border-color: var(--adm-accent);
+}
+
+@media (max-width: 600px) {
+    .hs-add-form { grid-template-columns: 1fr; }
+    .hs-slide-row { flex-wrap: wrap; }
+    .hs-slide-actions { flex-wrap: wrap; }
+}

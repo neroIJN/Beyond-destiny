@@ -1,0 +1,278 @@
+/* ── Page header ─────────────────────────────────────────────────────── */
+.adm-page-subtitle {
+    font-size: 0.88rem;
+    color: var(--adm-muted);
+    margin: 4px 0 0 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ── Badge variants ──────────────────────────────────────────────────── */
+.adm-badge-unread {
+    background: rgba(34, 34, 34, 0.08);
+    color: var(--adm-accent);
+    border: 1px solid rgba(34, 34, 34, 0.15);
+}
+
+.adm-badge-read {
+    background: rgba(0, 0, 0, 0.03);
+    color: var(--adm-muted);
+    border: 1px solid var(--adm-border);
+}
+
+/* ── Tag pills (event type, date) ────────────────────────────────────── */
+.adm-tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 2px 10px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--adm-text);
+    white-space: nowrap;
+}
+
+.adm-tag-muted {
+    opacity: 0.7;
+}
+
+/* ── Submission list ─────────────────────────────────────────────────── */
+.adm-submission-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* ── Submission row ──────────────────────────────────────────────────── */
+.adm-submission-row {
+    background: var(--adm-surface);
+    border: 1px solid var(--adm-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: all var(--transition-medium) var(--ease-smooth);
+}
+
+.adm-submission-row:hover {
+    border-color: var(--adm-accent);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.adm-submission-row--unread {
+    border-left: 4px solid var(--adm-accent);
+}
+
+.adm-submission-row--open {
+    border-color: rgba(34, 34, 34, 0.3);
+}
+
+/* ── Summary button (the clickable header of each row) ───────────────── */
+.adm-submission-summary {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s;
+}
+
+.adm-submission-summary:hover {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+/* ── Meta: name + email ──────────────────────────────────────────────── */
+.adm-submission-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 180px;
+    flex-shrink: 0;
+}
+
+.adm-submission-name {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--adm-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+.adm-submission-email {
+    font-size: 0.78rem;
+    color: var(--adm-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+/* ── Tags section ────────────────────────────────────────────────────── */
+.adm-submission-tags {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    flex-wrap: wrap;
+}
+
+/* ── Right side: date + badge + chevron ──────────────────────────────── */
+.adm-submission-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.adm-submission-date {
+    font-size: 0.78rem;
+    color: var(--adm-muted);
+    white-space: nowrap;
+}
+
+.adm-chevron {
+    font-size: 0.65rem;
+    color: var(--adm-muted);
+    transition: transform 0.15s;
+}
+
+/* ── Detail panel (expanded area) ────────────────────────────────────── */
+.adm-submission-detail {
+    border-top: 1px solid var(--adm-border);
+    padding: 20px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ── Detail fields grid ──────────────────────────────────────────────── */
+.adm-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.adm-detail-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.adm-detail-field--full {
+    grid-column: 1 / -1;
+}
+
+.adm-detail-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--adm-muted);
+}
+
+.adm-detail-value {
+    font-size: 0.9rem;
+    color: var(--adm-text);
+    line-height: 1.5;
+}
+
+.adm-detail-message {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* ── Detail action buttons ───────────────────────────────────────────── */
+.adm-detail-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────── */
+@media (max-width: 700px) {
+    .adm-submission-summary {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .adm-submission-tags {
+        flex-basis: 100%;
+    }
+
+    .adm-submission-right {
+        margin-left: 0;
+    }
+}
+
+/* ── Search Container ────────────────────────────────────────────────── */
+.adm-search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: var(--adm-bg);
+    border: 1px solid var(--adm-border);
+    border-radius: var(--radius-full);
+    padding: 2px 16px;
+    width: 320px;
+    transition: all var(--transition-medium) var(--ease-smooth);
+}
+
+.adm-search-container:focus-within {
+    border-color: var(--adm-accent);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.adm-search-input {
+    background: none;
+    border: none;
+    color: var(--adm-text);
+    padding: 8px 30px 8px 0;
+    font-size: 0.9rem;
+    width: 100%;
+    outline: none;
+}
+
+.adm-search-input::placeholder {
+    color: var(--adm-muted);
+    opacity: 0.7;
+}
+
+.adm-search-clear {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    color: var(--adm-muted);
+    cursor: pointer;
+    font-size: 0.8rem;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.15s, color 0.15s;
+}
+
+.adm-search-clear:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--adm-text);
+}
+
+@media (max-width: 600px) {
+    .adm-page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .adm-search-container {
+        width: 100%;
+    }
+}
+

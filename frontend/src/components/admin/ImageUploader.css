@@ -1,0 +1,136 @@
+.img-uploader {
+    width: 100%;
+}
+
+/* ── Drop zone ────────────────────────────────────────────────────────── */
+.img-uploader-zone {
+    border: 2px dashed var(--adm-border);
+    border-radius: 10px;
+    padding: 32px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: var(--adm-muted);
+}
+
+.img-uploader-zone:hover {
+    border-color: var(--adm-accent);
+    background: rgba(77, 93, 109, 0.04);
+    color: var(--adm-text);
+}
+
+.img-uploader-zone--error {
+    border-color: var(--adm-danger);
+    background: rgba(229, 87, 87, 0.04);
+}
+
+.img-uploader-hint {
+    font-size: 0.88rem;
+    font-weight: 500;
+}
+
+.img-uploader-hint-sub {
+    font-size: 0.75rem;
+    color: var(--adm-muted);
+}
+
+/* ── Preview box ─────────────────────────────────────────────────────── */
+.img-uploader-preview {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--adm-border);
+}
+
+.img-uploader-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ── Uploading overlay ───────────────────────────────────────────────── */
+.img-uploader-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(13, 13, 13, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.img-uploader-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid rgba(255,255,255,0.2);
+    border-top-color: var(--adm-accent);
+    border-radius: 50%;
+    animation: adm-spin 0.7s linear infinite;
+}
+
+@keyframes adm-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ── Done state badges ───────────────────────────────────────────────── */
+.img-uploader-done-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 28px;
+    height: 28px;
+    background: var(--adm-success);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.img-uploader-change {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+    background: rgba(13,13,13,0.7);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.img-uploader-change:hover {
+    background: var(--adm-danger);
+}
+
+.img-uploader-ready {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--adm-success);
+    opacity: 0.9;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 6px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}

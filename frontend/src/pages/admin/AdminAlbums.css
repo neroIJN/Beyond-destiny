@@ -1,0 +1,119 @@
+/* Admin Albums Page */
+
+.adm-loading-text {
+    color: var(--adm-muted);
+    font-size: 0.9rem;
+    padding: 20px 0;
+}
+
+.adm-empty-state {
+    text-align: center;
+    padding: 48px;
+    color: var(--adm-muted);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ── Album list ──────────────────────────────────────────────────────── */
+.adm-album-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.adm-album-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--adm-surface);
+    border: 1px solid var(--adm-border);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-medium) var(--ease-smooth);
+}
+
+.adm-album-row:hover {
+    border-color: var(--adm-accent);
+    transform: translateX(6px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.adm-album-thumb {
+    width: 64px;
+    height: 48px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--adm-border);
+    flex-shrink: 0;
+}
+
+.adm-album-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.adm-album-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.adm-album-name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--adm-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.adm-album-meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.adm-album-cat {
+    font-size: 0.75rem;
+    color: var(--adm-accent);
+    background: rgba(77, 93, 109, 0.05);
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    font-weight: 500;
+}
+
+.adm-album-order {
+    font-size: 0.72rem;
+    color: var(--adm-muted);
+}
+
+/* ── Actions ─────────────────────────────────────────────────────────── */
+.adm-album-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.adm-confirm-delete {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.adm-confirm-text {
+    font-size: 0.82rem;
+    color: var(--adm-danger);
+    font-weight: 500;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+    .adm-album-row { flex-wrap: wrap; }
+    .adm-album-actions { width: 100%; justify-content: flex-end; }
+}

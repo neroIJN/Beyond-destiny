@@ -1,0 +1,240 @@
+/* ═══════════════════════════════
+   Contact Page — Light Luxury
+   ═══════════════════════════════ */
+
+.contact-page {
+    background: var(--bg-primary);
+}
+
+/* Hero */
+.contact-page-hero {
+    padding: 160px 0 80px;
+    text-align: center;
+    background: var(--bg-primary);
+}
+
+.contact-page-hero .label-text {
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--accent-gold);
+}
+
+.contact-page-hero h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--text-primary);
+}
+
+.contact-page-hero h1 em {
+    color: var(--accent-gold);
+}
+
+/* Content */
+.contact-page-content {
+    padding: 0 0 120px;
+}
+
+.contact-page-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 0;
+}
+
+/* Details Panel */
+.contact-details-panel {
+    background: var(--bg-secondary);
+    padding: 3.5rem;
+    border-radius: 3px 0 0 3px;
+}
+
+.contact-details-panel h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 400;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+.contact-details-panel h2 em {
+    font-style: italic;
+    color: var(--accent-gold);
+}
+
+.contact-page-intro {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text-body);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+}
+
+.contact-info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.info-item {
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+}
+
+.info-label {
+    font-family: var(--font-label);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+.info-item a,
+.info-item p {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+}
+
+.info-item a:hover {
+    color: var(--accent-gold);
+}
+
+/* Form Panel */
+.contact-form-panel {
+    background: var(--bg-card);
+    padding: 3.5rem;
+    border-radius: 0 3px 3px 0;
+    border: 1px solid var(--border);
+    border-left: none;
+}
+
+.contact-page-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.contact-page-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.contact-page-form .form-group {
+    position: relative;
+}
+
+.contact-page-form .form-group input,
+.contact-page-form .form-group textarea {
+    width: 100%;
+    padding: 1rem 0 0.6rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    outline: none;
+    transition: border-color 0.3s ease;
+    resize: none;
+}
+
+.contact-page-form .form-group input:focus,
+.contact-page-form .form-group textarea:focus {
+    border-bottom-color: var(--accent-gold);
+}
+
+.contact-page-form .form-group label {
+    position: absolute;
+    left: 0;
+    top: 1rem;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.contact-page-form .form-group input:focus+label,
+.contact-page-form .form-group input:not(:placeholder-shown)+label,
+.contact-page-form .form-group textarea:focus+label,
+.contact-page-form .form-group textarea:not(:placeholder-shown)+label {
+    top: -0.3rem;
+    font-size: 0.6rem;
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent-gold);
+}
+
+.contact-page-form .form-group::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-gold);
+    transition: width 0.4s ease;
+}
+
+.contact-page-form .form-group:focus-within::after {
+    width: 100%;
+}
+
+
+/* Date input */
+.contact-page-form .form-group input[type="date"] {
+    color: var(--text-primary);
+}
+
+.contact-page-form .form-group input[type="date"]:not(:valid) {
+    color: transparent;
+}
+
+.contact-page-form .form-group input[type="date"]:focus {
+    color: var(--text-primary);
+}
+
+/* ═══════════════════════════════
+   Responsive
+   ═══════════════════════════════ */
+@media (max-width: 1024px) {
+    .contact-page-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-details-panel {
+        border-radius: 3px 3px 0 0;
+    }
+
+    .contact-form-panel {
+        border-radius: 0 0 3px 3px;
+        border-left: 1px solid var(--border);
+        border-top: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-page-hero {
+        padding: 140px 0 60px;
+    }
+
+    .contact-details-panel,
+    .contact-form-panel {
+        padding: 2.5rem 2rem;
+    }
+
+    .contact-page-form .form-row {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}

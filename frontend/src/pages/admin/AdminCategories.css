@@ -1,0 +1,176 @@
+/* Album Categories admin page */
+
+/* ── Category list ───────────────────────────────────────────── */
+.cat-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 36px;
+}
+
+.cat-row {
+    background: var(--adm-surface);
+    border: 1px solid var(--adm-border);
+    border-radius: var(--radius-md);
+    padding: 0;
+    overflow: hidden;
+    transition: all var(--transition-medium) var(--ease-smooth);
+}
+
+/* ── Normal row ──────────────────────────────────────────────── */
+.cat-normal-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    gap: 12px;
+}
+
+.cat-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--adm-text);
+    flex: 1;
+}
+
+.cat-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+/* ── Edit row ────────────────────────────────────────────────── */
+.cat-edit-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 16px;
+}
+
+.cat-edit-input {
+    flex: 1;
+    min-width: 180px;
+}
+
+.cat-edit-actions {
+    display: flex;
+    gap: 6px;
+}
+
+/* ── Confirm delete row ──────────────────────────────────────── */
+.cat-confirm-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 16px;
+    background: rgba(217, 83, 79, 0.04);
+    border-color: rgba(217, 83, 79, 0.2);
+}
+
+.cat-confirm-prompt {
+    font-size: 0.82rem;
+    color: var(--adm-danger);
+    flex: 1;
+}
+
+.cat-confirm-actions {
+    display: flex;
+    gap: 6px;
+}
+
+/* ── Inline error ────────────────────────────────────────────── */
+.cat-inline-error {
+    font-size: 0.78rem;
+    color: var(--adm-danger, #e55);
+    width: 100%;
+}
+
+/* ── Delete button variants ──────────────────────────────────── */
+.cat-btn-delete {
+    color: var(--adm-muted);
+    border-color: var(--adm-border);
+    background: transparent;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.cat-btn-delete:hover {
+    color: var(--adm-danger);
+    border-color: rgba(217, 83, 79, 0.3);
+    background: rgba(217, 83, 79, 0.04);
+}
+
+.cat-btn-delete-confirm {
+    background: var(--adm-danger);
+    color: #ffffff;
+    border: none;
+}
+
+.cat-btn-delete-confirm:hover {
+    opacity: 0.9;
+}
+
+/* ── Empty state ─────────────────────────────────────────────── */
+.cat-empty {
+    padding: 32px;
+    text-align: center;
+    color: var(--adm-muted);
+    font-size: 0.88rem;
+    background: var(--adm-surface);
+    border: 1px dashed var(--adm-border);
+    border-radius: 12px;
+}
+
+/* ── Add section ─────────────────────────────────────────────── */
+.cat-add-section {
+    border-top: 1px solid var(--adm-border);
+    padding-top: 28px;
+}
+
+.cat-add-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--adm-text);
+    margin: 0 0 14px;
+}
+
+.cat-add-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    max-width: 480px;
+}
+
+.cat-add-input {
+    flex: 1;
+}
+
+.cat-add-error {
+    margin: 8px 0 0;
+    font-size: 0.82rem;
+    color: #e55;
+}
+
+.cat-add-hint {
+    margin: 10px 0 0;
+    font-size: 0.8rem;
+    color: var(--adm-muted);
+    line-height: 1.5;
+}
+
+/* ── Small btn size ──────────────────────────────────────────── */
+.adm-btn-sm {
+    padding: 5px 10px;
+    font-size: 0.78rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+@media (max-width: 480px) {
+    .cat-add-form { flex-wrap: wrap; }
+    .cat-add-input { min-width: 0; }
+    .cat-normal-row { flex-wrap: wrap; }
+}

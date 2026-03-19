@@ -1,0 +1,284 @@
+/* ════════════════════════════════════
+   Signature Section — Bento Grid
+   ════════════════════════════════════ */
+
+.signature-section {
+    padding: var(--section-padding) 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.signature-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* Content Side */
+.signature-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.signature-eyebrow {
+    display: inline-flex;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent-primary);
+    background: var(--accent-light);
+    padding: 0.5rem 1.25rem;
+    border-radius: var(--radius-full);
+    width: fit-content;
+}
+
+.signature-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+.signature-card {
+    padding: 1.75rem;
+}
+
+.signature-card p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-body);
+    margin-bottom: 1rem;
+}
+
+.signature-card p:last-child {
+    margin-bottom: 0;
+}
+
+.signature-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--accent-primary);
+    transition: all 0.3s var(--ease-smooth);
+}
+
+.signature-link:hover {
+    gap: 0.75rem;
+}
+
+.signature-link svg {
+    font-size: 1.1rem;
+    transition: transform 0.3s var(--ease-smooth);
+}
+
+.signature-link:hover svg {
+    transform: translateX(4px);
+}
+
+/* Bento Grid */
+.signature-bento {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    grid-template-rows: 200px 200px;
+    gap: 1rem;
+    position: relative;
+    height: 420px;
+}
+
+.bento-item {
+    border-radius: 0px;
+    overflow: hidden;
+    position: relative;
+}
+
+.bento-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: inherit;
+}
+
+.bento-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bento-item:hover .bento-image img {
+    transform: scale(1.08);
+}
+
+/* Film grain */
+.bento-grain {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+}
+
+/* Duotone hover overlay */
+.bento-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(77, 93, 109, 0.6) 0%,
+        rgba(77, 93, 109, 0.2) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+}
+
+.bento-item:hover .bento-overlay {
+    opacity: 1;
+}
+
+.bento-tag {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-primary);
+}
+
+/* Bento positioning */
+.bento-large {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    box-shadow: var(--glass-shadow-hover);
+}
+
+.bento-medium {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.bento-small {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+/* Circle accent image */
+.bento-accent {
+    position: absolute;
+    bottom: -30px;
+    left: 40%;
+    width: 120px;
+    height: 120px;
+    z-index: 10;
+    border: 4px solid white;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.bento-image.circle {
+    border-radius: 0px;
+}
+
+/* ════════════════════════════════════
+   Responsive
+   ════════════════════════════════════ */
+@media (max-width: 1024px) {
+    .signature-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .signature-content {
+        text-align: center;
+        align-items: center;
+    }
+
+    .signature-card {
+        max-width: 560px;
+    }
+
+    .signature-bento {
+        height: 380px;
+    }
+}
+
+@media (max-width: 768px) {
+    .signature-bento {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 180px 180px;
+        height: 380px;
+    }
+
+    .bento-accent {
+        width: 90px;
+        height: 90px;
+        bottom: -20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .signature-bento {
+        grid-template-columns: 1fr;
+        grid-template-rows: 200px 150px 150px;
+        height: auto;
+    }
+
+    .bento-large {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .bento-medium {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .bento-small {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    .bento-accent {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .signature-images {
+        grid-template-columns: 1fr;
+    }
+    
+    .image-1 {
+        grid-column: 1;
+        grid-row: 1;
+        height: 280px;
+    }
+    
+    .image-2 {
+        grid-column: 1;
+        grid-row: 2;
+        height: 200px;
+    }
+    
+    .image-3 {
+        grid-column: 1;
+        grid-row: 3;
+        height: 200px;
+    }
+    
+    .signature-card {
+        padding: 1.25rem;
+    }
+}
